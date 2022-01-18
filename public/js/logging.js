@@ -1,6 +1,6 @@
-$("#signupBtn").on("click", async function () {
+$("#sign-up-btn").on("click", async function () {
     event.preventDefault();
-
+    console.log('clicky click')
     const first_name = $('#first-name-signup').val().trim();
     const last_name = $('#last-name-signup').val().trim();
     const user_name = $('#user-name-signup').val().trim();
@@ -15,7 +15,7 @@ $("#signupBtn").on("click", async function () {
         });
         console.log(response)
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/landing');
             console.log("success", response)
         } else {
             console.log('Failed to sign up.');
@@ -25,8 +25,9 @@ $("#signupBtn").on("click", async function () {
 
 
 // Create New User via the Sign-up Form
-$("#loginBtn").on("click", async function () {
+$("#login-btn").on("click", async function () {
     event.preventDefault();
+    console.log('clicky click')
     const email = $('#email-login').val().trim();
     const password = $('#password-login').val().trim();
 

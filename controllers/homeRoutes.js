@@ -6,76 +6,36 @@ const withAuth = require('../utils/auth');
 // Homepage route -- displays the blogs, date created, and the user who published it 
 router.get('/', async (req, res) => {
 
-    res.render('landing');
-
-});
-
-router.get('/dashboard', withAuth, async (req, res) => {
     try {
-        // Find the logged in user based on the session ID
-        const userData = await User.findByPk(req.session.user_id, {
-            attributes: { exclude: ['password'] },
-            include: [{
-                model: Blog,
-                include: [{
-                    model: User,
-                    attributes: ["display_name"]
-                }],
-            }]
-        });
-
-        const users = userData.get({ plain: true });
-        console.log(users.blogs)
-        res.render('profile', {
-            users: users,
-            blogs: users.blogs,
-            logged_in: true
-        });
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err);
-    }
-});
-
-// login page!
-router.get('/login', (req, res) => {
-    // If a session exists, redirect the request to the homepage
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
-});
-
-
-// Use withAuth middleware to prevent access to route -- dashboard -- only showing what the user created!
-router.get('/:id', async (req, res) => {
-    try {
-        const blogData = await Blog.findByPk(req.params.id, {
+        console.log('in the get')
+        const allPostData = await Post.findAll({
             include: [{
                 model: User,
-                attributes: ['display_name'], exclude: ['password']
-            }, {
-                model: Comment,
-                include: [
-                    {
-                        model: User,
-                        attributes: ['display_name']
-                    }],
+                attributes: ['user_name'], exclude: ['password']
             }],
         });
-        const blogs = blogData.get({ plain: true });
-        console.log(blogs)
-        res.render('blog', {
-            blogs: blogs,
-            logged_in: req.session.logged_in
-        });
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err);
+        console.log('its all the posts', allPostData);
+
+
+        const posts = allPostData.map(post => post.get({ plain: true }));
+        console.log(posts)
+
+
+        res.render('landing', { posts: posts });
     }
+    catch (err) {
+        res.status(500).json(err);
+        console.log(err)
+    }
+
+
 });
 
+router.get('/posts', async (req, res) => {
 
+});
 
+router.get('/signup', async (req, res) => {
+    res.render('signup')
+})
 module.exports = router

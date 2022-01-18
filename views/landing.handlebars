@@ -1,2 +1,13 @@
 <h1>hello</h1>
 <p>welcome in</p>
+<h1>make sure you sign in!</h1>
+<button href='/signup'><a href='/signup'>Sign in!</a></button>
+{{#each posts}}
+<p>{{user.user_name}}</p>
+<h1>{{title}}</h1>
+<h3>{{content}}</h3>
+{{#each posts.comment}}
+<p>in the each</p>
+<h1>{{this.new_comment}}</h1>
+{{/each}}
+{{/each}}
