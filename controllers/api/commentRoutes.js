@@ -1,6 +1,20 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 
+
+
+
+router.get('/', async (req, res) => {
+    const allcomments = await Comment.findAll({
+        include: [{
+            model: User,
+            attributes: ['user_name'], exclude: ['password']
+        }],
+    })
+    const posts = allcomments.map(post => post.get({ plain: true }));
+    res.render('dash', { posts })
+})
+
 router.post('/', async (req, res) => {
     try {
         console.log(req.body, "REQ.BODY")

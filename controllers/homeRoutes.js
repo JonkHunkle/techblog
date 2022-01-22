@@ -31,7 +31,32 @@ router.get('/', async (req, res) => {
 
 });
 
-router.get('/posts', async (req, res) => {
+router.get('/dashboard', async (req, res) => {
+    try {
+        const allUserData = await User.findAll({
+            attributes: { exclude: ['password'] },
+            include: [{
+                model: Post,
+                include: [{
+                    model: User,
+                    attributes: ["user_name"]
+                }],
+            }]
+        });
+
+
+
+        const users = allUserData.map(user => user.get({ plain: true }));
+        console.log(users)
+
+        res.render('dash', {
+            users: users,
+            posts: users.posts,
+        });
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+    }
 
 });
 
