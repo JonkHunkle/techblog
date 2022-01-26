@@ -14,10 +14,18 @@
 </head>
 
 <body>
-
-
+    {{#if logged_in}}
+    <a href='/dashboard' class='border-slate border-solid border-2'>dashboard!</a>
+    <a href='/' class='border-slate border-solid border-2'>Home</a>
+    <button id='logout'>logout!</button>
+    {{else}}
+    <h1>make sure you sign in!</h1>
+    <a class='bg-blue-300 border-black border-2 border-dashed' href='/signup'>Sign
+        in!</a>
+    {{/if}}
     {{{body}}}
     <script src="./js/logging.js"></script>
+    <script src="./js/post.js"></script>
 </body>
 
 </html>

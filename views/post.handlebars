@@ -1,0 +1,19 @@
+<span class='text-center flex flex-col'>
+    <div class='border-black border-2 border-solid m-6 p-6'>
+        <h1>{{posts.title}}</h1>
+        <p>{{posts.user.username}}</p>
+        <h3>{{posts.content}}</h3>
+    </div>
+    {{#if logged_in}}
+    <p>add a comment!</p>
+    <input class='place-self-center border-black border-2 border-solid' id='newComment'>
+    <button id='commentBtn' data-id="{{posts.id}}" class='bg-blue-400 border-black border-solid border-2'>tell em what
+        you think</button>
+    {{/if}}
+    {{#each posts.comments as |comments|}}
+    <div class='border-black border-2 border-solid m-6 p-6'>
+        <p>{{this.user.username}}</p>
+        <p>{{comments.new_comment}}</p>
+        {{/each}}
+    </div>
+</span>

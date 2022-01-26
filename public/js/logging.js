@@ -1,21 +1,23 @@
 $("#sign-up-btn").on("click", async function () {
     event.preventDefault();
-    console.log('clicky click')
-    const first_name = $('#first-name-signup').val().trim();
-    const last_name = $('#last-name-signup').val().trim();
-    const user_name = $('#user-name-signup').val().trim();
-    const email = $('#email-signup').val().trim();
-    const password = $('#password-signup').val().trim();
 
-    if (first_name && last_name && user_name && email && password) {
+    signup = {
+        first_name: $('#new-first-name').val(),
+        last_name: $('#new-last-name').val(),
+        username: $('#new-username').val(),
+        email: $('#new-email').val(),
+        password: $('#new-password').val()
+    };
+
+    if (signup) {
         const response = await fetch('/api/users', {
             method: 'POST',
-            body: JSON.stringify({ first_name, last_name, user_name, email, password }),
+            body: JSON.stringify({ signup }),
             headers: { 'Content-Type': 'application/json' },
         });
-        console.log(response)
+
         if (response.ok) {
-            document.location.replace('/landing');
+            document.location.replace('/dash');
             console.log("success", response)
         } else {
             console.log('Failed to sign up.');
@@ -24,20 +26,21 @@ $("#sign-up-btn").on("click", async function () {
 })
 
 
-// Create New User via the Sign-up Form
 $("#login-btn").on("click", async function () {
     event.preventDefault();
-    console.log('clicky click')
-    const email = $('#email-login').val().trim();
-    const password = $('#password-login').val().trim();
 
-    if (email && password) {
+    login = {
+        email: $('#email-login').val(),
+        password: $('#password-login').val()
+    }
+
+    if (login) {
         const response = await fetch('/api/users/login', {
             method: 'POST',
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ login }),
             headers: { 'Content-Type': 'application/json' },
         });
-        console.log(response)
+
         if (response.ok) {
             document.location.replace('/dashboard');
             console.log("success", response)
@@ -50,7 +53,7 @@ $("#login-btn").on("click", async function () {
 $("#logout").on("click", async function () {
     event.preventDefault();
     const response = await fetch('/api/users/logout', {
-        method: 'POST',
+        method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
 

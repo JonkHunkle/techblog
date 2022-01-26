@@ -7,21 +7,21 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
 
     try {
-        console.log('in the get')
+
         const allPostData = await Post.findAll({
             include: [{
                 model: User,
-                attributes: ['user_name'], exclude: ['password']
+                attributes: ['username'], exclude: ['password']
             }],
         });
-        console.log('its all the posts', allPostData);
+
 
 
         const posts = allPostData.map(post => post.get({ plain: true }));
-        console.log(posts)
 
 
-        res.render('landing', { posts: posts });
+
+        res.render('landing', { posts: posts, logged_in: req.session.logged_in });
     }
     catch (err) {
         res.status(500).json(err);
@@ -31,27 +31,26 @@ router.get('/', async (req, res) => {
 
 });
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
-        const allUserData = await User.findAll({
+        const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password'] },
             include: [{
                 model: Post,
                 include: [{
                     model: User,
-                    attributes: ["user_name"]
+                    attributes: ["username"]
                 }],
             }]
         });
 
 
-
-        const users = allUserData.map(user => user.get({ plain: true }));
-        console.log(users)
+        const users = userData.get({ plain: true });
 
         res.render('dash', {
             users: users,
             posts: users.posts,
+            logged_in: true
         });
     } catch (err) {
         console.log(err)
@@ -60,7 +59,41 @@ router.get('/dashboard', async (req, res) => {
 
 });
 
+
+
 router.get('/signup', async (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+    res
     res.render('signup')
 })
+
+router.get('/:id', async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [{
+                model: User,
+                attributes: ['username'], exclude: ['password']
+            }, {
+                model: Comment,
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username']
+                    }],
+            }],
+        });
+        const posts = postData.get({ plain: true });
+        console.log('posts with the id', posts)
+        res.render('post', {
+            posts: posts,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+    }
+});
 module.exports = router
