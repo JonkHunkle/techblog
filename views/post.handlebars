@@ -13,7 +13,7 @@
     <div class='border-black border-2 border-solid m-6 p-6'>
         {{#each posts.comments as |comments|}}
         <div class='border-black border-2 border-solid m-6 p-6'>
-            <p>{{this.user.username}}</p>
+            <p>{{this.user}}</p>
             <p>{{comments.new_comment}}</p>
         </div>
         {{/each}}
