@@ -1,7 +1,7 @@
 <span class='text-center flex flex-col'>
     <div class='border-black border-2 border-solid m-6 p-6'>
-        <h1>{{posts.title}}</h1>
         <p>{{posts.user.username}}</p>
+        <h1>{{posts.title}}</h1>
         <h3>{{posts.content}}</h3>
     </div>
     {{#if logged_in}}
@@ -13,7 +13,7 @@
     <div class='border-black border-2 border-solid m-6 p-6'>
         {{#each posts.comments as |comments|}}
         <div class='border-black border-2 border-solid m-6 p-6'>
-            <p>{{this.user}}</p>
+            <p>{{this.user.username}}</p>
             <p>{{comments.new_comment}}</p>
         </div>
         {{/each}}
