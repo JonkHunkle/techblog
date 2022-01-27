@@ -17,7 +17,7 @@ $("#sign-up-btn").on("click", async function () {
         });
 
         if (response.ok) {
-            document.location.replace('/dash');
+            document.location.replace('/dashboard');
             console.log("success", response)
         } else {
             console.log('Failed to sign up.');

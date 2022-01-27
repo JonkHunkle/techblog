@@ -70,7 +70,7 @@ router.get('/signup', async (req, res) => {
     res.render('signup')
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [{
@@ -85,14 +85,15 @@ router.get('/:id', async (req, res) => {
                     }],
             }],
         });
+
         const posts = postData.get({ plain: true });
-        console.log('posts with the id', posts)
+        console.log('posts?', posts)
         res.render('post', {
             posts: posts,
             logged_in: req.session.logged_in
         });
     } catch (err) {
-        console.log(err)
+        console.log('is this the error?', err)
         res.status(500).json(err);
     }
 });

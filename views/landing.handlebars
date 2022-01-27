@@ -2,22 +2,13 @@
     <span class='place-self-center border-2 border-black corder-solid'>
         <h1>hello!</h1>
         <p>welcome in</p>
-
-        {{#if logged_in}}
-        <h1>sign out!</h1>
-        <button id='logout'>logout!</button>
-        {{else}}
-        <h1>make sure you sign in!</h1>
-        <a class='bg-blue-300 border-black border-2 border-dashed' href='/signup'>Sign
-            in!</a>
-        {{/if}}
     </span>
     <span class='flex flex-col border-2 border-black mt-10 border-solid'>
         <h1 class='text-center'>Here's what you missed!</h1>
         {{#each posts}}
         <span class='text-center border-black border-2 border-solid my-2'>
-            <p>{{user.username}}</p>
-            <a class='bg-amber-400' href='/{{id}}'>{{title}}</a>
+            <p>{{users.username}}</p>
+            <a class='bg-amber-400' href='/post/{{id}}'>{{title}}</a>
             <h3>{{content}}</h3>
         </span>
         {{/each}}
