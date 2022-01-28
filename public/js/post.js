@@ -1,8 +1,9 @@
-console.log('POST JS LOADED!!')
+
+
 $("#postBtn").on("click", async function () {
     event.preventDefault();
     console.log('click')
-    post = {
+    let post = {
         postTitle: $('#postTitle').val(),
         postContent: $('#postContent').val()
     }
@@ -49,9 +50,9 @@ $("#commentBtn").on("click", async function () {
 })
 
 
-$('#deleteBtn').on('click', async () => {
+$('.deleteBtn').on('click', async function () {
     event.preventDefault()
-    let id = $('#deleteBtn').data('id')
+    let id = $(this).data('id')
     const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE'
     })
@@ -61,4 +62,46 @@ $('#deleteBtn').on('click', async () => {
     } else {
         console.log('Failed to post.');
     }
+
+})
+
+
+
+$('.modalBtn').on('click', function (e) {
+    const id = $(this).data("id")
+    if ($(`#modal${id}`).css('display') === 'none') {
+        $(`#modal${id}`).css('display', 'block')
+    } else {
+        $(`#modal${id}`).css('display', 'none')
+    }
+})
+
+$('.updateBtn').on('click', async function () {
+    const id = $(this).data("id")
+
+
+    const title = $(`#newPostTitle${id}`).val()
+    const content = $(`#newPostContent${id}`).val()
+
+    if (title && content) {
+        const response = await fetch(`/api/posts/${id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({ title, content }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            document.location.reload();
+            console.log("success", response)
+        } else {
+            console.log('Failed to post.');
+        }
+    }
+
+})
+
+$('.closeBtn').on('click', async function () {
+    const id = $(this).data("id")
+    $(`#modal${id}`).css('display', 'none')
+
 })

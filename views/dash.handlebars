@@ -11,7 +11,29 @@
     {{#each posts}}
     <div class='border-2 border-black border-solid p-4 m-8'>
         <a href='/post/{{id}}'>{{title}}</a>
-        <button id='deleteBtn' data-id="{{id}}" class='self-end border-black border-2 border-solid'>X</button>
+        <button data-id='{{id}}' class='modalBtn self-end border-black border-2 border-solid'>Change
+            it!</button>
+    </div>
+    <div id='modal{{id}}' class='hidden bg-gray-200'>
+        <button class='closeBtn' data-id='{{id}}'>X</button>
+        <p>Want to make a change?</p>
+        <input id='newPostTitle{{id}}' placeholder="new title" class='border-2 border-black border-solid'></input>
+        <input id='newPostContent{{id}}' placeholder="tell me about it again!"
+            class='border-2 border-black border-solid'></input>
+        <button data-id="{{id}}" class='deleteBtn self-end border-black border-2 border-solid'>Delete it!</button>
+        <button data-id="{{id}}" class='updateBtn self-end border-black border-2 border-solid'>Update!</button>
+
     </div>
     {{/each}}
+</div>
+
+
+<div id='modal' class='hidden bg-gray-200'>
+    <button id='closeBtn'>X</button>
+    <p>Want to make a change?</p>
+    <input id='newPostTitle' placeholder="new title" class='border-2 border-black border-solid'></input>
+    <input id='newPostContent' placeholder="tell me about it again!" class='border-2 border-black border-solid'></input>
+    <button id='deleteBtn' data-id="{{id}}" class='self-end border-black border-2 border-solid'>Delete it!</button>
+    <button id='updateBtn' data-id="{{id}}" class='self-end border-black border-2 border-solid'>Ed-it!</button>
+
 </div>
