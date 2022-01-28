@@ -1,3 +1,4 @@
+console.log('POST JS LOADED!!')
 $("#postBtn").on("click", async function () {
     event.preventDefault();
     console.log('click')
@@ -28,7 +29,7 @@ $("#commentBtn").on("click", async function () {
 
     comment = {
         new_comment: $('#newComment').val(),
-        id: $(this).data("id")
+        id: $('#commentBtn').data("id")
     }
     console.log(comment)
     if (comment) {
@@ -51,7 +52,6 @@ $("#commentBtn").on("click", async function () {
 $('#deleteBtn').on('click', async () => {
     event.preventDefault()
     let id = $('#deleteBtn').data('id')
-    console.log(id)
     const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE'
     })
