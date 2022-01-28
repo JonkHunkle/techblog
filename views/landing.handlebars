@@ -6,10 +6,10 @@
     <span class='flex flex-col border-2 border-black mt-10 border-solid'>
         <h1 class='text-center'>Here's what you missed!</h1>
         {{#each posts}}
-        <span class='text-center border-black border-2 border-solid my-2'>
-            <p>{{users.username}}</p>
+        <div class='text-center border-black border-2 border-solid my-2'>
+            <p>{{user.username}}</p>
             <a class='bg-amber-400' href='/post/{{id}}'>{{title}}</a>
             <h3>{{content}}</h3>
-        </span>
+        </div>
         {{/each}}
     </span>

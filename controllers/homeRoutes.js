@@ -3,7 +3,7 @@ const { User, Post, Comment } = require('../models')
 const withAuth = require('../utils/auth');
 
 
-// Homepage route -- displays the blogs, date created, and the user who published it 
+
 router.get('/', async (req, res) => {
 
     try {

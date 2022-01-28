@@ -10,8 +10,8 @@
 <div class='border-2 border-black border-solid'>
     {{#each posts}}
     <div class='border-2 border-black border-solid p-4 m-8'>
-        <a href='/{{id}}'>{{title}}</a>
-        <button id='deleteBtn' class='self-end border-black border-2 border-solid'>X</button>'
+        <a href='/post/{{id}}'>{{title}}</a>
+        <button id='deleteBtn' data-id="{{id}}" class='self-end border-black border-2 border-solid'>X</button>
     </div>
     {{/each}}
 </div>

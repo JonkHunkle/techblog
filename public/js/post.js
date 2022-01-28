@@ -1,6 +1,6 @@
 $("#postBtn").on("click", async function () {
     event.preventDefault();
-
+    console.log('click')
     post = {
         postTitle: $('#postTitle').val(),
         postContent: $('#postContent').val()
@@ -44,5 +44,21 @@ $("#commentBtn").on("click", async function () {
         } else {
             console.log('Failed to post.');
         }
+    }
+})
+
+
+$('#deleteBtn').on('click', async () => {
+    event.preventDefault()
+    let id = $('#deleteBtn').data('id')
+    console.log(id)
+    const response = await fetch(`/api/posts/${id}`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        document.location.reload();
+        console.log("success", response)
+    } else {
+        console.log('Failed to post.');
     }
 })
