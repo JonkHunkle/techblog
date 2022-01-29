@@ -2,7 +2,7 @@
 
 $("#postBtn").on("click", async function () {
     event.preventDefault();
-    console.log('click')
+
     let post = {
         postTitle: $('#postTitle').val(),
         postContent: $('#postContent').val()
@@ -26,20 +26,20 @@ $("#postBtn").on("click", async function () {
 
 $("#commentBtn").on("click", async function () {
     event.preventDefault();
-    console.log('click')
+
 
     comment = {
         new_comment: $('#newComment').val(),
         id: $('#commentBtn').data("id")
     }
-    console.log(comment)
+
     if (comment) {
         const response = await fetch('/api/comments', {
             method: 'POST',
             body: JSON.stringify(comment),
             headers: { 'Content-Type': 'application/json' },
         });
-        console.log('new comment', comment)
+
         if (response.ok) {
             document.location.reload();
             console.log("success", response)

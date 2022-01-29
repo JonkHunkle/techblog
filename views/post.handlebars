@@ -3,6 +3,7 @@
         <p>{{posts.user.username}}</p>
         <h1>{{posts.title}}</h1>
         <h3>{{posts.content}}</h3>
+        <p>Created on {{format_date posts.createdAt}}</p>
     </div>
     {{#if logged_in}}
     <p>add a comment!</p>

@@ -9,7 +9,8 @@
         <div class='text-center border-black border-2 border-solid my-2'>
             <p>{{user.username}}</p>
             <a class='bg-amber-400' href='/post/{{id}}'>{{title}}</a>
-            <h3>{{content}}</h3>
+
+            <p>Created on {{format_date createdAt}}</p>
         </div>
         {{/each}}
     </span>
