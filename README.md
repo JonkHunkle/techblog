@@ -1,6 +1,5 @@
 # Tech Blog
-  
-  ![Tech Blog](https://github.com/JonkHunkle/portfolioSourceCode/blob/main/src/assets/images/techblog.png?raw=true)
+
   
 ## Description
 
@@ -15,7 +14,9 @@ This is an application using express which allows users to make blog posts and o
 ## Deployment
 
 [Live Deployment](https://techblawg.herokuapp.com/)
-
+<br/>
+  
+  ![Tech Blog](https://github.com/JonkHunkle/portfolioSourceCode/blob/main/src/assets/images/techblog.png?raw=true)
 
       
 ## Questions
