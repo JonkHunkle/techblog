@@ -3,6 +3,8 @@
   
 ## Description
 
+As a person with a large social circle, I would like to be able to make posts and comment on my friends' posts.
+
 This is an application using express which allows users to make blog posts and other users to comment on any post as log as the user is logged in. This allows the users to keep track of their blog posts and review comments made on posts.
 
 ## Table of Contents
