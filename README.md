@@ -3,13 +3,23 @@
   
 ## Description
 
-This is an application using express which allows users to make blog posts and other users to comment on any post as log as the user is logged in. This allows the users to keep track of their blog posts and review comments made on posts. Built using HTML, Tailwind, JS, Node.js, Express.js, Sequelize, Sessions and Handlebars
+This is an application using express which allows users to make blog posts and other users to comment on any post as log as the user is logged in. This allows the users to keep track of their blog posts and review comments made on posts.
 
 ## Table of Contents
 * [Description](#description)
+* [Technologies Used](#technologies)
+* [Usage](#usage)
 * [Deployment](#deployment)
 * [Contact](#contact)
 
+## Technologies Used
+
+* HTML, Tailwind, JS, Node.js, Express.js, Sequelize, Sessions and Handlebars
+
+##Usage
+
+*  User will only be able to read comments if not looged into a authorized account.
+* Users can create an account which gives access to the ability to add posts as well as leave comments on other user's posts.
 
 ## Deployment
 
